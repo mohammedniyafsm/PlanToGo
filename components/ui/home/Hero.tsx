@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import TileNavbar from "../TileNavbar";
 import { MapPin, ChevronDown } from "lucide-react";
+import FloatingPhotoCollage from "./FloatingPhotoCollage";
 
 // Adjust these to match your actual frame range in /public/HeroSectionLoading
 const FRAME_START = 2;
@@ -166,6 +167,9 @@ export default function HomeHero({ onAnimationComplete }: HomeHeroProps) {
                 ref={canvasRef}
                 className="absolute inset-0 w-full h-full block"
             />
+
+            {/* Floating Photo Collage Layer */}
+            <FloatingPhotoCollage show={animationFinished} />
 
             {/* Hero Content Overlay */}
             <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
