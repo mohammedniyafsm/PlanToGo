@@ -1,22 +1,26 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 const VALUES = [
   {
     titleFirstLine: "stranger",
     titleSecondLine: "camps",
     description: "Where travelers meet, share stories around the campfire, and end the trip as a close-knit crew.",
+    image: "/card/q.jpg",
   },
   {
     titleFirstLine: "acoustic",
     titleSecondLine: "vibes",
     description: "Hosted by Hanansha & Echo, blending remote exploration with live jam sessions and musical energy.",
+    image: "/card/s.jpg",
   },
   {
     titleFirstLine: "exclusive",
     titleSecondLine: "drops",
     description: "Follow our reveals on Instagram, grab one of the limited slots, and join the next group journey.",
+    image: "/card/r.jpg",
   },
 ];
 
@@ -42,8 +46,20 @@ export default function CompanyValues() {
           {VALUES.map((val, idx) => (
             <div
               key={idx}
-              className="relative aspect-square rounded-2xl border border-white/45 bg-white/5 hover:bg-white/10 transition-all duration-500 ease-out group flex flex-col justify-end p-6 overflow-hidden cursor-pointer shadow-lg"
+              className="relative aspect-square rounded-2xl border border-white/45 bg-black/10 hover:bg-black/20 transition-all duration-500 ease-out group flex flex-col justify-end p-6 overflow-hidden cursor-pointer shadow-lg"
             >
+              {/* Card Background Image */}
+              <Image
+                src={val.image}
+                alt={`${val.titleFirstLine} ${val.titleSecondLine}`}
+                fill
+                className="object-cover opacity-60 group-hover:opacity-85 group-hover:scale-105 transition-all duration-700 ease-out"
+                sizes="(max-width: 768px) 100vw, 33vw"
+              />
+
+              {/* Gradient Overlay for Text Readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+
               {/* Card content container */}
               <div className="space-y-3 relative z-10 transition-transform duration-500 group-hover:-translate-y-2">
                 <h3
@@ -51,7 +67,7 @@ export default function CompanyValues() {
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   <span className="block text-white">{val.titleFirstLine}</span>
-                  <span className="block text-[#161B22]/40 dark:text-white/40 group-hover:text-white/70 transition-colors duration-500">
+                  <span className="block text-white/50 group-hover:text-white/80 transition-colors duration-500">
                     {val.titleSecondLine}
                   </span>
                 </h3>

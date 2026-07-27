@@ -20,7 +20,7 @@ export default function Home() {
       <CompanyValues />
 
       {/* Full screen canvas transition from blue to white */}
-      <ReverseTransition />
+      {/* <ReverseTransition /> */}
 
       {/* Upcoming Group Journeys (Light #F7F9FC section) */}
       <UpcomingTrips />
