@@ -16,7 +16,7 @@ interface PhotoConfig {
 const PHOTO_CONFIGS: PhotoConfig[] = [
   {
     id: 1,
-    src: "/hero-photos/1.jpg",
+    src: "/home-f/1.jpg",
     className: "absolute top-[12%] left-[6%] md:top-[16%] md:left-[8%] w-[130px] md:w-[220px]",
     rotation: -6,
     depth: 0.02,
@@ -26,7 +26,7 @@ const PHOTO_CONFIGS: PhotoConfig[] = [
   },
   {
     id: 2,
-    src: "/hero-photos/2.jpg",
+    src: "/home-f/2.jpg",
     className: "absolute hidden md:block top-[46%] left-[4%] w-[120px] md:w-[195px]",
     rotation: 4,
     depth: 0.035,
@@ -36,7 +36,7 @@ const PHOTO_CONFIGS: PhotoConfig[] = [
   },
   {
     id: 3,
-    src: "/hero-photos/3.jpg",
+    src: "/home-f/3.jpg",
     className: "absolute top-[14%] right-[5%] md:top-[18%] md:right-[7%] w-[145px] md:w-[230px]",
     rotation: 5,
     depth: 0.015,
@@ -46,7 +46,7 @@ const PHOTO_CONFIGS: PhotoConfig[] = [
   },
   {
     id: 4,
-    src: "/hero-photos/4.jpg",
+    src: "/home-f/4.jpg",
     className: "absolute hidden md:block bottom-[12%] left-[10%] w-[130px] md:w-[210px]",
     rotation: -4,
     depth: 0.025,
@@ -56,7 +56,7 @@ const PHOTO_CONFIGS: PhotoConfig[] = [
   },
   {
     id: 5,
-    src: "/hero-photos/5.jpg",
+    src: "/home-f/5.jpg",
     className: "absolute top-[65%] right-[6%] md:bottom-[14%] md:right-[9%] w-[140px] md:w-[225px]",
     rotation: -5,
     depth: 0.03,
@@ -66,7 +66,7 @@ const PHOTO_CONFIGS: PhotoConfig[] = [
   },
   {
     id: 6,
-    src: "/hero-photos/6.jpg",
+    src: "/home-f/6.jpg",
     className: "absolute hidden md:block top-[62%] right-[22%] w-[110px] md:w-[170px]",
     rotation: 6,
     depth: 0.04,
@@ -79,7 +79,6 @@ const PHOTO_CONFIGS: PhotoConfig[] = [
 interface FloatingPhotoCollageProps {
   show: boolean;
 }
-
 export default function FloatingPhotoCollage({ show }: FloatingPhotoCollageProps) {
   const parallaxRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -155,19 +154,24 @@ export default function FloatingPhotoCollage({ show }: FloatingPhotoCollageProps
               animation: `floatY ${config.floatDuration} ease-in-out infinite`,
               animationDelay: config.floatDelay,
             }}
-            className="w-full h-full"
+            className="w-full h-full relative"
           >
-            {/* Image card handles Polaroid styling, rotation, and fade/scale intro transition */}
-            <img
-              src={config.src}
-              alt={`Travel moment ${config.id}`}
-              className="w-full h-auto bg-white p-1.5 md:p-2.5 rounded-sm md:rounded-md shadow-md md:shadow-xl border border-black/5 pointer-events-none transition-all duration-[800ms] ease-out select-none"
+            {/* Transition container for rotation, scale and opacity */}
+            <div
+              className="relative w-full h-full transition-all duration-[800ms] ease-out"
               style={{
                 transform: `rotate(${config.rotation}deg) scale(${show ? 1 : 0.9})`,
                 opacity: show ? 1 : 0,
                 transitionDelay: show ? config.fadeInDelay : "0ms",
               }}
-            />
+            >
+              {/* Image card with slim white Polaroid border padding */}
+              <img
+                src={config.src}
+                alt={`Travel moment ${config.id}`}
+                className="w-full h-auto bg-white p-1 md:p-1.5 rounded-[2px] shadow-md md:shadow-xl border border-black/5 pointer-events-none select-none"
+              />
+            </div>
           </div>
         </div>
       ))}

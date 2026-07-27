@@ -34,7 +34,7 @@ export default function FooterCTA() {
   };
 
   return (
-    <footer id="footer-cta" className="w-full bg-[#0B57D6] text-white py-24 px-6 relative overflow-hidden select-none">
+    <footer id="footer-cta" className="w-full bg-background text-white py-24 px-6 relative overflow-hidden select-none">
       {/* Background Decorative Pattern */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
         <svg className="w-full h-full" viewBox="0 0 800 800" fill="none">
@@ -92,41 +92,79 @@ export default function FooterCTA() {
           </div>
         </div>
 
-        {/* Footer Navigation & Social Links */}
-        <div className="pt-16 border-t border-white/15 flex flex-col md:flex-row items-center justify-between gap-8 text-sm text-white/80">
-          {/* Brand Info */}
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#FF6B4A] flex items-center justify-center text-white font-bold text-xs">
-              <MapPin className="w-4 h-4 fill-white" />
+        {/* Footer Navigation & Link Grids */}
+        <div className="pt-16 border-t border-white/15 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 text-sm text-white/80">
+          {/* Column 1: Brand Info */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-[#FF6B4A] flex items-center justify-center text-white font-bold text-xs">
+                <MapPin className="w-4 h-4 fill-white" />
+              </div>
+              <span className="font-bold text-xl text-white tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+                Plan Togo
+              </span>
             </div>
-            <span className="font-bold text-lg text-white tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-              Plan Togo
-            </span>
-            <span className="text-white/40">|</span>
-            <span className="text-xs text-white/60">© 2026 Plan Togo. All rights reserved.</span>
+            <p className="text-white/60 text-xs leading-relaxed max-w-xs">
+              Curated group trips for solo travelers and adventure seekers. Connect with top creators and discover the world together.
+            </p>
           </div>
 
-          {/* Contact Triggers */}
-          <div className="flex items-center gap-6">
-            <a
-              href="https://wa.me/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 hover:text-[#FF6B4A] transition font-semibold"
-            >
-              <MessageCircle className="w-4 h-4 text-emerald-400" />
-              <span>WhatsApp Support</span>
-            </a>
+          {/* Column 2: Explore links */}
+          <div className="space-y-4">
+            <h4 className="font-bold text-white uppercase tracking-wider text-xs">Explore</h4>
+            <ul className="space-y-2.5 text-xs text-white/60">
+              <li><a href="#upcoming-trips" className="hover:text-white transition duration-200">Upcoming Journeys</a></li>
+              <li><a href="#how-it-works" className="hover:text-white transition duration-200">How it Works</a></li>
+              <li><a href="#values" className="hover:text-white transition duration-200">Our Core Values</a></li>
+              <li><a href="#social-proof" className="hover:text-white transition duration-200">Traveler Stories</a></li>
+            </ul>
+          </div>
 
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 hover:text-[#FF6B4A] transition font-semibold"
-            >
-              <InstagramIcon className="w-4 h-4 text-pink-400" />
-              <span>@plantogo.trips</span>
-            </a>
+          {/* Column 3: Information links */}
+          <div className="space-y-4">
+            <h4 className="font-bold text-white uppercase tracking-wider text-xs">Information</h4>
+            <ul className="space-y-2.5 text-xs text-white/60">
+              <li><a href="/terms" className="hover:text-white transition duration-200">Terms & Conditions</a></li>
+              <li><a href="/privacy" className="hover:text-white transition duration-200">Privacy Policy</a></li>
+              <li><a href="/safety" className="hover:text-white transition duration-200">Safety Guidelines</a></li>
+              <li><a href="/support" className="hover:text-white transition duration-200">Help Center</a></li>
+            </ul>
+          </div>
+
+          {/* Column 4: Contact & Social links */}
+          <div className="space-y-4">
+            <h4 className="font-bold text-white uppercase tracking-wider text-xs">Connect</h4>
+            <div className="flex flex-col gap-3">
+              {/* WhatsApp Contact badge */}
+              <a
+                href="https://wa.me/"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-[#25D366] transition duration-200 font-semibold w-fit border border-white/10"
+              >
+                <MessageCircle className="w-4 h-4 fill-[#25D366] text-[#25D366]" />
+                <span className="text-white text-xs font-medium">WhatsApp Support</span>
+              </a>
+
+              {/* Instagram Contact badge */}
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-[#E1306C] transition duration-200 font-semibold w-fit border border-white/10"
+              >
+                <InstagramIcon className="w-4 h-4 text-[#E1306C]" />
+                <span className="text-white text-xs font-medium">@plantogo.trips</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Copyright separator */}
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/40">
+          <p>© 2026 Plan Togo. All rights reserved.</p>
+          <div className="flex items-center gap-4">
+            <span>Made for travelers, by travelers</span>
           </div>
         </div>
       </div>

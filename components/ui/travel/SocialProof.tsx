@@ -2,6 +2,8 @@
 
 import React from "react";
 import { Star, Heart, MessageCircle } from "lucide-react";
+import { Marquee } from "@/components/magicui/marquee";
+import { cn } from "@/lib/utils";
 
 function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -24,26 +26,96 @@ function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
 const REVIEWS = [
   {
     name: "Samantha Reed",
-    role: "Bali Trip '25",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
-    text: "I booked solo because none of my friends could take time off. Within 2 hours of meeting the crew in Bali, we felt like we'd known each other for years! Best trip of my life.",
-    rating: 5,
+    username: "@samantha_r",
+    body: "I booked solo because none of my friends could take time off. Within 2 hours of meeting the crew in Bali, we felt like we'd known each other for years! Best trip of my life.",
+    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80",
   },
   {
     name: "David Chen",
-    role: "Swiss Alps Trekker",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-    text: "The creator host @liam_summits organized every alpine hut stay flawlessly. All I had to do was show up with my hiking boots. 10/10 recommendation!",
-    rating: 5,
+    username: "@david_c",
+    body: "The creator host organized every alpine hut stay flawlessly. All I had to do was show up with my hiking boots. 10/10 recommendation!",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80",
   },
   {
     name: "Elena Rostova",
-    role: "Iceland Aurora Explorer",
-    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80",
-    text: "Standing under the Northern Lights with 14 people who started as strangers and ended as lifelong friends is a memory I'll treasure forever.",
-    rating: 5,
+    username: "@elena_r",
+    body: "Standing under the Northern Lights with 14 people who started as strangers and ended as lifelong friends is a memory I'll treasure forever.",
+    img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=100&q=80",
+  },
+  {
+    name: "Jack",
+    username: "@jack",
+    body: "I've never seen anything like this before. It's amazing. I love it.",
+    img: "https://avatar.vercel.sh/jack",
+  },
+  {
+    name: "Jill",
+    username: "@jill",
+    body: "I don't know what to say. I'm speechless. This is amazing.",
+    img: "https://avatar.vercel.sh/jill",
+  },
+  {
+    name: "John",
+    username: "@john",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/john",
+  },
+  {
+    name: "Jane",
+    username: "@jane",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/jane",
+  },
+  {
+    name: "Jenny",
+    username: "@jenny",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/jenny",
+  },
+  {
+    name: "James",
+    username: "@james",
+    body: "I'm at a loss for words. This is amazing. I love it.",
+    img: "https://avatar.vercel.sh/james",
   },
 ];
+
+const firstRow = REVIEWS.slice(0, Math.ceil(REVIEWS.length / 2));
+const secondRow = REVIEWS.slice(Math.ceil(REVIEWS.length / 2));
+
+const ReviewCard = ({
+  img,
+  name,
+  username,
+  body,
+}: {
+  img: string;
+  name: string;
+  username: string;
+  body: string;
+}) => {
+  return (
+    <figure
+      className={cn(
+        "relative w-72 cursor-pointer overflow-hidden rounded-xl border p-4 transition duration-300",
+        "border-gray-200 bg-white hover:bg-gray-50 shadow-sm"
+      )}
+    >
+      <div className="flex flex-row items-center gap-2">
+        <img className="rounded-full object-cover w-8 h-8" width="32" height="32" alt={name} src={img} />
+        <div className="flex flex-col">
+          <figcaption className="text-sm font-semibold text-gray-900">
+            {name}
+          </figcaption>
+          <p className="text-xs font-medium text-gray-400">{username}</p>
+        </div>
+      </div>
+      <blockquote className="mt-2 text-sm text-gray-600 leading-relaxed">
+        {body}
+      </blockquote>
+    </figure>
+  );
+};
 
 const INSTA_PHOTOS = [
   {
@@ -93,37 +165,21 @@ export default function SocialProof() {
           </p>
         </div>
 
-        {/* Testimonial Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {REVIEWS.map((review, idx) => (
-            <div
-              key={idx}
-              className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm space-y-6 flex flex-col justify-between"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center gap-1 text-amber-400">
-                  {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400" />
-                  ))}
-                </div>
-                <p className="text-gray-700 text-base italic leading-relaxed">
-                  "{review.text}"
-                </p>
-              </div>
-
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                <img
-                  src={review.avatar}
-                  alt={review.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-[#0B57D6]"
-                />
-                <div>
-                  <h4 className="font-bold text-[#161B22] text-sm">{review.name}</h4>
-                  <p className="text-xs text-gray-500">{review.role}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* Testimonial Marquees */}
+        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden py-4">
+          <Marquee pauseOnHover className="[--duration:30s] py-2">
+            {firstRow.map((review) => (
+              <ReviewCard key={review.username} {...review} />
+            ))}
+          </Marquee>
+          <Marquee reverse pauseOnHover className="[--duration:30s] py-2">
+            {secondRow.map((review) => (
+              <ReviewCard key={review.username} {...review} />
+            ))}
+          </Marquee>
+          {/* Fading Gradients */}
+          <div className="from-[#F7F9FC] to-transparent pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r z-10"></div>
+          <div className="from-[#F7F9FC] to-transparent pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l z-10"></div>
         </div>
 
         {/* Instagram Photo Grid */}

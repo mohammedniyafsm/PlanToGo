@@ -5,7 +5,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 export default function StatementPanel() {
   return (
     <>
-      <div className="w-full text-white bg-[#0038FF] flex justify-end pt-0 pb-[80px] md:pb-[120px] px-8 md:pr-[60px] md:pl-24 overflow-hidden">
+      <div className="w-full text-white bg-[#0038FF] flex justify-end pt-[100px] md:pt-[180px] pb-[80px] md:pb-[120px] px-8 md:pr-[60px] md:pl-24 overflow-hidden">
         <ScrollReveal
           enableColorReveal={true}
           startColor="#0524B3"
